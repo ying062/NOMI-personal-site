@@ -1,0 +1,8 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
+    {"source": "/admin.html", "headers": [{"key": "Cache-Control", "value": "no-store"}]},
+    {"source": "/admin.js", "headers": [{"key": "Cache-Control", "value": "no-store"}]}
+  ]
+}
