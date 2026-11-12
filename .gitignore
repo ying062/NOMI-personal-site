@@ -114,3 +114,7 @@ build/
 /reference-assets/
 /reference-assets-*
 
+
+# Tencent Cloud EdgeOne
+.edgeone/
+.tef_dist/
