@@ -15,6 +15,8 @@
 │   │   ├── PRD-001.md           原产品需求（Draft）
 │   │   └── PRD-001-测试用例.md  原产品验收用例
 │   ├── process/development-workflow.md 开发与 Git 规则
+│   ├── process/daily-update.md  日常更新速查（改版上线五步）
+│   ├── process/edgeone-deployment.md  EdgeOne 部署记录与结论
 │   ├── templates/
 │   │   ├── SPEC.md              迭代开发测试契约模板
 │   │   └── TEST-REPORT.md       实测结果模板
@@ -23,8 +25,7 @@
 │   │   └── TEST-REPORT.md       本轮检查记录
 │   ├── testing/README.md        跨轮测试约定
 │   └── releases/README.md       发布记录说明
-├── src/README.md                源码预留
-├── public/README.md             公开静态资源预留
+├── public/                      唯一源码与上线目录（GitHub Pages 发布源）
 ├── tests/README.md              自动测试预留
 ├── scripts/README.md            构建/验证脚本预留
 └── tools/
@@ -37,7 +38,7 @@
     └── prd-doc-writer/          历史技能、assets 与 references
 ```
 
-第三方技能内部目录沿用其 README，不逐文件展开。当前无网站代码、依赖清单或部署配置。
+第三方技能内部目录沿用其 README，不逐文件展开。站点为纯静态，无依赖清单；发布走 GitHub Pages（`.github/workflows/deploy-pages.yml`）。
 
 ## 阅读与使用顺序
 

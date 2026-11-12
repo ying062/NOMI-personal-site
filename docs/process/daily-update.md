@@ -6,10 +6,11 @@
 
 | 目录 | 作用 | 是否上线 |
 | --- | --- | --- |
-| `public/` | **唯一上线源**，GitHub Pages 发布的就是它 | 是 |
-| `src/` | 历史遗留镜像，内容与 `public/` 相同 | 否，但为了不出现两份不同代码，改完 `public/` 要同步过来 |
+| `public/` | **唯一源码与上线源**，GitHub Pages 发布的就是它 | 是 |
 
-只改 `public/` 就够了。资源（图片等）放 `public/assets/`，HTML 里用相对路径引用，例如 `./assets/ip-nomi.jpg`。
+只改 `public/`。资源（图片等）放 `public/assets/`，HTML 里用相对路径引用，例如 `./assets/ip-nomi.jpg`。
+
+> 原来的 `src/` 镜像目录已在 SPEC-025 删除 —— 两份相同代码各自演化，正是 SPEC-023 登录故障的成因。现在只有一个源头，不必再同步。
 
 ## 1. 本地预览
 
