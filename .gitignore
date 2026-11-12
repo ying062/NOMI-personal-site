@@ -118,3 +118,6 @@ build/
 # Tencent Cloud EdgeOne
 .edgeone/
 .tef_dist/
+
+# 本地工作记录（项目记忆，不入库）
+/.workbuddy/
