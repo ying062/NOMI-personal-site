@@ -1,10 +1,10 @@
 # SPEC-024 测试报告
 
-- 结论：Pass（TC-007 待推送后回填）
+- 结论：Pass
 - 日期：2026-11-12
 - 执行人：AI agent
 - 分支：`chore/SPEC-024-v1-release` → `main`
-- 被测 SHA：`0007e2a`（首次合并 main 的提交）
+- 被测 SHA：`5b71911`（main 最终提交，即 v1.0.0 指向的提交）
 - 环境：Windows 10/11，Git Bash，Node v22（本地）；CI 为 GitHub Actions ubuntu-latest + Node 20
 - SPEC：同目录 SPEC.md
 
@@ -16,7 +16,9 @@
 | TC-004 / AC-004 | `grep -nE "on:|push:|pull_request|workflow_dispatch|check-links" .github/workflows/link-check.yml` | 三处触发齐全并调用脚本 | 第 3-7 行为 `push[main]` / `pull_request` / `workflow_dispatch`；第 25 行 `run: node scripts/check-links.mjs public` | Pass | 工作流文件 |
 | TC-005 / AC-005 | `grep -nE "name: |uses: " .github/workflows/deploy-pages.yml` | 检查步骤在上传与部署之前 | 第 32 行 `Check site assets`，第 35 行 `Upload static site`，第 40 行 `Deploy to GitHub Pages` | Pass | 工作流文件 |
 | TC-006 / AC-006 | 通读 `docs/process/daily-update.md`，核对其中命令与路径 | 命令可执行、路径存在 | `scripts/serve.ps1`、`scripts/check-links.mjs`、`public/` 均存在；已删除误写的 `scripts/serve.mjs`（该文件不存在） | Pass | 文档 |
-| TC-007 / AC-007 | `git rev-parse v1.0.0` 与 `git ls-remote --tags origin v1.0.0` | 两者一致 | 待推送后回填 | Not Run | — |
+| TC-007 / AC-007 | `git rev-parse v1.0.0`、`git ls-remote`（经 api.github.com 核对） | 本地与远端一致 | 本地标签对象 `fea2bd6` → 指向提交 `5b71911`；远端 `refs/tags/v1.0.0` = `fea2bd6`；远端 main = `5b71911`，与本地一致 | Pass | API 返回 `refs/tags/v1.0.0 | tag fea2bd6`、`指向提交 5b71911 | 标签 v1.0.0` |
+| TC-008 / AC-005 | 推送后查询 Actions 运行记录 | 两个工作流均成功 | `Check site assets` success(`5b71911`)、`Deploy to GitHub Pages` success(`5b71911`) | Pass | Actions API |
+| TC-009（回归） | 线上抽查 `/`、`/admin.html`、`/style.css`、`/app.js`、`/admin.js`、`/assets/ip-nomi.jpg` | 全部 200 | 六项均 HTTP 200 | Pass | curl 输出 |
 
 ## 缺陷与回归
 
@@ -27,7 +29,10 @@
 
 ## 合并与备份记录
 
-- 合并 SHA：`0007e2a`（`merge: SPEC-024 asset guard and v1.0 release prep`）
+- 合并 SHA：`0007e2a`（代码与守卫）、`5b71911`（测试报告）
 - 远端：https://github.com/ying062/NOMI-personal-site.git
-- 发布标签：`v1.0.0`（指向发布提交，随 main 推送）
-- 远端 SHA 核对与 Actions 运行结果：见下方补充
+- 远端 main = `5b71911`，与本地一致（经 api.github.com 核对）
+- 发布标签：`v1.0.0`（附注标签，对象 `fea2bd6` → 提交 `5b71911`），已推送
+- Actions：`Check site assets` 与 `Deploy to GitHub Pages` 在 `5b71911` 上均 success
+- 线上回归：前台首页、`/admin.html`、CSS、两份 JS、头图均 200
+- 过程异常：推送期间本机代理到 github.com 的隧道多次返回 `CONNECT tunnel failed, response 502`，直连亦不可用；重试后推送成功，SHA 已核对一致。属网络环境问题，与仓库内容无关。
