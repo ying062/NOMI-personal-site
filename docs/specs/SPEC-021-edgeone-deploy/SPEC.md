@@ -1,6 +1,6 @@
 # SPEC-021：EdgeOne Pages 首次部署与 GitHub 同步
 
-- 状态：In Progress
+- 状态：Verified
 - 日期：2026-11-12
 - 分支：chore/SPEC-021-edgeone-deploy
 - 对应版本：v1.0（候选）

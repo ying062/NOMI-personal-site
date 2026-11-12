@@ -13,10 +13,11 @@
 | TC-021-02 补充 | 探测 `nomi-personal-site.edgeone.app`、`nomi-personal-site-fotzncqx.edgeone.app`、`nomi-personal-site.edgeone.cool` | 出现公开默认域名 | 均返回 404，说明尚无已绑定域名 | Blocked | 需控制台绑定域名或开启项目公开 |
 | TC-021-03 / AC-021-03 | `git rev-parse main`、`git ls-remote origin refs/heads/main` | SHA 相同 | 均为 `560e6752851309b2a610ab06ad7ddac709f80cfe` | Pass | origin 为 https://github.com/ying062/NOMI-personal-site.git |
 | TC-021-04 / AC-021-04 | 阅读 docs/process/edgeone-deployment.md | 含项目/部署 ID、控制台地址、回退步骤 | 本轮已补「CLI 部署记录」章节 | Pass | 同仓库文档 |
+| TC-021-02 追加 | `npx edgeone makers deploy public -n nomi-personal-site-overseas -a overseas -e production` 后访问 `https://nomi-personal-site-overseas-fz57udyg.edgeone.dev` | 海外区域默认域名可公开访问 | 部署成功（projectId `makers-l4y62ahohnd5`，deploymentId `dpx6fcq8wjd9`），但 `/`、`/index.html`、`/admin.html`、`/style.css`、`/app.js`、`/assets/ip-nomi.jpg` 全部 401 | Fail | 证明 401 与区域无关，属项目级预览鉴权 |
 
 ## 缺陷与回归
 
-- DEF-021-01（阻塞）：EdgeOne 新项目默认只发放带 `eo_token` 的预览链接，未公开时访客访问返回 401。修复方式为在控制台开启公开访问或绑定域名；中国大陆区域自定义域名需 ICP 备案。
+- DEF-021-01（阻塞）：EdgeOne 新项目默认只发放带 `eo_token` 的预览链接，未公开时访客访问返回 401。`域名管理` 中默认域名「关联环境」为空，说明未绑定到生产环境。中国站绑定自定义域名需 ICP 备案，用户当前无域名，因此 EdgeOne 无法提供公开访问入口。结论：本期放弃 EdgeOne 作为上线平台，改用 GitHub Pages（见 SPEC-022）。
 - 未执行项：Supabase 留言入库、PV/UV 统计、管理员登录均在公开地址上复测，本轮未做。
 
 ## 合并与备份记录
