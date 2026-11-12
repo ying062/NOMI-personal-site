@@ -57,3 +57,7 @@ PRD 定产品行为，SPEC 定本轮实施与验证，TEST-REPORT 记录事实�
 - [SPEC-002：整站版本路线图](specs/SPEC-002-site-roadmap/SPEC.md) · [检查报告](specs/SPEC-002-site-roadmap/TEST-REPORT.md)
 
 - [SPEC-013：Supabase 数据后台](specs/SPEC-013-supabase-backoffice/SPEC.md)
+
+- [SPEC-021：EdgeOne Pages 首次部署](specs/SPEC-021-edgeone-deploy/SPEC.md)（无备案域名无法公开访问，暂缓）
+
+- [SPEC-022：GitHub Pages 发布](specs/SPEC-022-github-pages/SPEC.md) · [测试报告](specs/SPEC-022-github-pages/TEST-REPORT.md)（当前线上发布方式）
