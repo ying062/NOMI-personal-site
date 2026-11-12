@@ -29,6 +29,9 @@ jobs:
         with:
           enablement: true
 
+      - name: Check site assets
+        run: node scripts/check-links.mjs public
+
       - name: Upload static site
         uses: actions/upload-pages-artifact@v3
         with:
