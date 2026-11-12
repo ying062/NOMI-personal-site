@@ -1,4 +1,16 @@
-# EdgeOne Pages 部署说明
+# 部署说明（EdgeOne Pages / GitHub Pages）
+
+当前线上发布方式为 GitHub Pages：推送 `main` 后由 `.github/workflows/deploy-pages.yml` 自动把 `public/` 发布到 https://ying062.github.io/NOMI-personal-site/ 。EdgeOne 的配置与结论保留在下方，作为取得备案域名后的备选。
+
+## GitHub Pages（当前使用）
+
+- 工作流：`.github/workflows/deploy-pages.yml`，`push` 到 `main` 或手动触发。
+- 仓库设置：Settings → Pages → Source 必须为「GitHub Actions」。
+- 发布目录：`public`，无构建步骤。
+- 访问：https://ying062.github.io/NOMI-personal-site/ ，后台 https://ying062.github.io/NOMI-personal-site/admin.html 。
+- 回退：`git revert` 对应提交；或在 Actions 中重跑上一条成功的运行。
+
+## EdgeOne Pages（备选，暂不可公开访问）
 
 本项目是纯静态前端，前端输出目录为 `public`，不需要构建命令。EdgeOne Pages 支持连接 GitHub 自动部署，也支持上传文件夹或 ZIP。
 
